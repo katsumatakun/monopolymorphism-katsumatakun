@@ -62,7 +62,7 @@ public class Player {
 			bankAccount += 2;
 		}
 	}
-	
+
 
 	public void goToRestroom(){
 		location = 5;
