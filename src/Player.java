@@ -72,6 +72,7 @@ public class Player {
 		return location;
 	}
 
+
 	/*public void drewChanceCard(){
 		chanceCard = true;
 	}
