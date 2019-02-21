@@ -9,6 +9,7 @@ public class GoToRestroom extends MonopolySquare {
         }
 
         public void landOn(Player P) {
-        P.goToRestroom();
+        //P.goToRestroom();
+        P.pay(3);
     }
 }

@@ -107,9 +107,18 @@ public class MonopolyGame {
 				else if(isChanceSpot(p1.checkPlace())){
 					ChanceCard cc = chanceCardDeck.drew();
 					if(isGoToColor(cc)){
+						p1.jumpLocation(cc.getNum(), cc.getColor());
+					}
+					else
+					{
 
 					}
 
+				}
+
+				else if (isGoToRestroom(p1.checkPlace())){
+					lc.add(3);
+					p1.goToRestroom();
 				}
 
 			}
@@ -131,6 +140,10 @@ public class MonopolyGame {
 	}
 
 	private  boolean isFreeChicketBooth(ChanceCard cc){
-		return cc instanceof GoToColor;
+		return cc instanceof FreeTicketBooth;
+	}
+
+	private boolean isGoToRestroom(int index){
+		return board[index] instanceof GoToRestroom;
 	}
 }

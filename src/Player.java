@@ -81,8 +81,34 @@ public class Player {
 			isTurn = true;
 	}
 
-	boolean isMyTurn(){
+	public boolean isMyTurn(){
 		return isTurn;
+	}
+
+	public void jumpLocation(int num, String color){
+		switch (color){
+			case "purple": location = 2;
+			break;
+			case "white": location = 6;
+			break;
+			case "magenta": location = 11;
+			break;
+			case "orange": location = 14;
+			break;
+			case "red": location = 18;
+			break;
+			case "yellow": location = 22;
+			break;
+			case "green": location = 27;
+			break;
+			case "blue": location = 30;
+			break;
+			default:break;
+		}
+
+		if (num == 2){
+			location++;
+		}
 	}
 
 

@@ -1,16 +1,9 @@
 public class FreeTicketBooth extends ChanceCard {
 
-    private String color;
-
-    public FreeTicketBooth(String color){
-
-        this.color = color;
+    public FreeTicketBooth(int num, String color) {
+        super(num, color);
     }
 
-    public String getColor(){
-
-        return color;
-    }
 
 
 }

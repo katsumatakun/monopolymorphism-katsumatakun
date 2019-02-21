@@ -31,14 +31,14 @@ public class ChanceDeck {
 		deck.add(new GoToColor("blue", 1));
 		deck.add(new GoToColor("blue", 2));
 
-		deck.add(new FreeTicketBooth("purple"));
-		deck.add(new FreeTicketBooth("white"));
-		deck.add(new FreeTicketBooth("magenta"));
-		deck.add(new FreeTicketBooth("orange"));
-		deck.add(new FreeTicketBooth("red"));
-		deck.add(new FreeTicketBooth("yellow"));
-		deck.add(new FreeTicketBooth("green"));
-		deck.add(new FreeTicketBooth("blue"));
+		deck.add(new FreeTicketBooth(0,"purple"));
+		deck.add(new FreeTicketBooth(0,"white"));
+		deck.add(new FreeTicketBooth(0,"magenta"));
+		deck.add(new FreeTicketBooth(0,"orange"));
+		deck.add(new FreeTicketBooth(0,"red"));
+		deck.add(new FreeTicketBooth(0,"yellow"));
+		deck.add(new FreeTicketBooth(0,"green"));
+		deck.add(new FreeTicketBooth(0,"blue"));
 
 		Collections.shuffle(deck);
 
