@@ -46,5 +46,6 @@ public class Property extends MonopolySquare {
             P.pay(price);
             owner.earn(price);
         }
+        P.flipTurn();
     }
 }

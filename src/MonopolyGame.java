@@ -6,14 +6,12 @@ public class MonopolyGame {
 	private LooseChange lc;
 	private ChanceDeck chanceCardDeck;
 
+	public MonopolyGame(){
 
-	public void play() {
 		board = new MonopolySquare[32];
 		dice = new Random();
 		lc = new LooseChange();
 		chanceCardDeck = new ChanceDeck();
-		Player p1 = new Player("Player 1");
-		Player p2 = new Player("Player 2");
 
 		Property pup1 = new Property("pup1");
 		pup1.AddSpeciality("purple", 1, 1);
@@ -91,5 +89,48 @@ public class MonopolyGame {
 
 
 
+	}
+	public void play() {
+
+		Player p1 = new Player("Player 1");
+		Player p2 = new Player("Player 2");
+
+		p1.flipTurn();
+		while (true) {
+			while (p1.isMyTurn()) {
+				int num = dice.nextInt(6) + 1;
+				p1.move(num);
+				board[p1.checkPlace()].landOn(p1);
+				if(isLoose(p1.checkPlace())){
+					p1.earn(lc.taken());
+				}
+				else if(isChanceSpot(p1.checkPlace())){
+					ChanceCard cc = chanceCardDeck.drew();
+					if(isGoToColor(cc)){
+
+					}
+
+				}
+
+			}
+		}
+
+
+	}
+
+	private boolean isLoose(int index){
+		return board[index] instanceof Loose;
+	}
+
+	private boolean isChanceSpot(int index){
+		return board[index] instanceof ChanceSpot;
+	}
+
+	private  boolean isGoToColor(ChanceCard cc){
+		return cc instanceof GoToColor;
+	}
+
+	private  boolean isFreeChicketBooth(ChanceCard cc){
+		return cc instanceof GoToColor;
 	}
 }

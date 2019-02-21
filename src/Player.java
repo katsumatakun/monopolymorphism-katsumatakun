@@ -8,6 +8,7 @@ public class Player {
 	public Player(String n){
 		name = n;
 		bankAccount = 31;
+		isTurn = false;
 	}
 
 	/* you will add several methods to this class as needed.*/
@@ -71,6 +72,19 @@ public class Player {
 	public int checkPlace(){
 		return location;
 	}
+
+	public void flipTurn (){
+		if (isTurn == true){
+			isTurn  =false;
+		}
+		else
+			isTurn = true;
+	}
+
+	boolean isMyTurn(){
+		return isTurn;
+	}
+
 
 
 	/*public void drewChanceCard(){
