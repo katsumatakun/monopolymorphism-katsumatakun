@@ -113,8 +113,6 @@ public class MonopolyGame {
 					} else if (isChanceSpot(p1.checkPlace())) {
 						cc = chanceCardDeck.drew();
 						chanceCardImplement(cc, p1, p2);
-						System.out.println(p1.getName() + " has $" + p1.money());
-						p1.endTurn();
 					} else if (isGoToRestroom(p1.checkPlace())) {
 						lc.add(3);
 						p1.goToRestroom();
@@ -125,7 +123,7 @@ public class MonopolyGame {
 
 			} catch (BankruptException e) {
 				System.out.println(p1.getName() + " " + e.getMessage());
-				break;
+				System.exit(0);
 			}
 			p2.startTurn();
 			try {
@@ -143,8 +141,6 @@ public class MonopolyGame {
 					} else if (isChanceSpot(p2.checkPlace())) {
 						cc = chanceCardDeck.drew();
 						chanceCardImplement(cc, p2, p1);
-						System.out.println(p2.getName() + " has $" + p2.money());
-						p2.endTurn();
 					} else if (isGoToRestroom(p1.checkPlace())) {
 						lc.add(3);
 						p2.goToRestroom();
@@ -155,7 +151,7 @@ public class MonopolyGame {
 
 			} catch (BankruptException e) {
 				System.out.println(p2.getName() + " " + e.getMessage());
-				break;
+				System.exit(0);
 			}
 			p1.startTurn();
 
@@ -213,6 +209,14 @@ public class MonopolyGame {
 		if(isGoToColor(cc)){
 			System.out.println(p1.getName() + " got " +cc.getColor() + cc.getNum());
 			p1.jumpLocation(cc.getNum(), cc.getColor());
+			try {
+				board[p1.checkPlace()].landOn(p1);
+			}
+			catch (BankruptException e){
+				System.out.println(p1.getName() + " " + e.getMessage());
+				System.exit(0);
+			}
+
 		}
 		else
 		{
@@ -232,12 +236,21 @@ public class MonopolyGame {
 						cc = chanceCardDeck.drew();
 						chanceCardImplement(cc, p1, p2);
 					}
-					else
+					else if (board[colorLoc(cc.getColor())].getOwner() == p1.getName() && board[colorLoc(cc.getColor())+1].getOwner() == p2.getName())
 					{
-						System.out.println(p1.getName() + " has already owned "+ cc.getColor() + "1 and 2");
-						//board[colorLoc(cc.getColor())].setOwner(p1);
+                        System.out.println(p1.getName() + " becomes the owner of "+ cc.getColor()+ "2");
+						board[colorLoc(cc.getColor())+1].setOwner(p1);
 					}
+					else if (board[colorLoc(cc.getColor())].getOwner() == p2.getName() && board[colorLoc(cc.getColor())+1].getOwner() == p1.getName()){
+                        System.out.println(p1.getName() + " becomes the owner of "+ cc.getColor()+ "1");
+                    }
+					else{
+                        System.out.println(p1.getName() + " has already owned "+ cc.getColor() + "1 and 2");
+                    }
+
 			}
+            System.out.println(p1.getName() + " has $" + p1.money());
+            p1.endTurn();
 
 		}
 	}

@@ -80,29 +80,36 @@ public class Player {
 	}
 
 	public void jumpLocation(int num, String color){
+		int next_location = 0;
 		switch (color){
-			case "purple": location = 2;
+			case "purple": next_location = 2;
 			break;
-			case "white": location = 6;
+			case "white": next_location = 6;
 			break;
-			case "magenta": location = 11;
+			case "magenta": next_location = 11;
 			break;
-			case "orange": location = 14;
+			case "orange": next_location = 14;
 			break;
-			case "red": location = 18;
+			case "red": next_location = 18;
 			break;
-			case "yellow": location = 22;
+			case "yellow": next_location = 22;
 			break;
-			case "green": location = 27;
+			case "green": next_location = 27;
 			break;
-			case "blue": location = 30;
+			case "blue": next_location = 30;
 			break;
 			default:break;
 		}
 
 		if (num == 2){
-			location++;
+			next_location++;
 		}
+		if (next_location < location){
+			System.out.println( name + " passed Go");
+			System.out.println(name + " earned $2");
+			earn(2);
+		}
+		location = next_location;
 		String n = Integer.toString(num);
 		System.out.println(name + " moved " + color + n);
 	}
