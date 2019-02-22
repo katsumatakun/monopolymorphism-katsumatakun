@@ -10,6 +10,9 @@ public class Loose extends MonopolySquare {
     }
 
     public void landOn(Player P) {
-
+        System.out.println(P.getName() + " land on Looses");
+        P.endTurn();
     }
+    public void setOwner(Player P){}
+    public String getOwner(){return "";}
 }

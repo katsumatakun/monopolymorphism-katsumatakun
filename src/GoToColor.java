@@ -4,7 +4,7 @@ public class GoToColor extends ChanceCard {
 
 
     public GoToColor(String color, int num){
-        super(num, color);
+        super(color, num);
 
     }
 

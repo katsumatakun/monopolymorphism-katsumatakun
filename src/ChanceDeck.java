@@ -14,7 +14,11 @@ public class ChanceDeck {
 
 	public ChanceDeck(){
 		// Needs code
-		deck.add(new GoToColor("purple", 1));
+		deck = new ArrayList<ChanceCard>();
+
+		next_index = 0;
+		GoToColor p1 = new GoToColor("purple", 1);
+		deck.add(p1);
 		deck.add(new GoToColor("purple", 2));
 		deck.add(new GoToColor("white", 1));
 		deck.add(new GoToColor("white", 2));
@@ -39,7 +43,6 @@ public class ChanceDeck {
 		deck.add(new FreeTicketBooth(0,"yellow"));
 		deck.add(new FreeTicketBooth(0,"green"));
 		deck.add(new FreeTicketBooth(0,"blue"));
-
 		Collections.shuffle(deck);
 
 	}

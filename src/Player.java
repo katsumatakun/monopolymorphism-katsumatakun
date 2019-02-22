@@ -48,18 +48,11 @@ public class Player {
 		return name;
 	}
 
-	public boolean isAlive(){
-		if (bankAccount < 0){
-			return false;
-		}
-
-		else
-			return true;
-	}
 	public void move (int dice){
 		int previous = location;
 		location = (location + dice) % 32;
 		if (previous > location){
+			System.out.println(name + " passed Go and earned $2");
 			bankAccount += 2;
 		}
 	}
@@ -73,12 +66,13 @@ public class Player {
 		return location;
 	}
 
-	public void flipTurn (){
-		if (isTurn == true){
-			isTurn  =false;
-		}
-		else
-			isTurn = true;
+	public void endTurn (){
+			isTurn  = false;
+			System.out.println(name+ "'s turn finish" );
+	}
+
+	public void startTurn (){
+		isTurn = true;
 	}
 
 	public boolean isMyTurn(){
@@ -109,6 +103,8 @@ public class Player {
 		if (num == 2){
 			location++;
 		}
+		String n = Integer.toString(num);
+		System.out.println(name + " moved " + color + n);
 	}
 
 

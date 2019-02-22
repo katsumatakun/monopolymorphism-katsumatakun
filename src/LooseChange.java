@@ -16,6 +16,10 @@ public class LooseChange {
 		return money;
 	}
 
+	public int checkBalance (){
+		return balance;
+	}
+
 	public void add (int amount ){
 
 		balance += amount;

@@ -20,4 +20,7 @@ public abstract class MonopolySquare {
 	//Note 2:   The designation, "Throws BankruptException" means that
 	//it is *possible* for this function to throw that Exception
 	// you have to figure out when it does as you implement this function
+
+	public abstract void setOwner(Player P);
+	public abstract String getOwner();
 }

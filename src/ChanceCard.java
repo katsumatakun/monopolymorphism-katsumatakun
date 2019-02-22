@@ -1,23 +1,20 @@
-import java.util.ArrayList;
+
 
 public class ChanceCard {
 
-    protected int num;
-    protected String color;
+    private String color;
+    private  int num;
 
-    public ChanceCard(int num, String color){
+    public ChanceCard(String color, int num){
 
-        this.num = num;
         this.color = color;
-    }
-    public void setNum(int num ){
         this.num = num;
     }
-    public int getNum(){return num; }
-    public void setColor(String color ){
-        this.color = color;
-    }
-    public String getColor(){return color; }
+
+    public int getNum(){ return num;}
+
+    public String getColor(){ return color;}
+
 
 
 }

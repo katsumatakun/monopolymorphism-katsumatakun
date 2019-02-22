@@ -15,6 +15,13 @@ public class Tax extends MonopolySquare {
         return price;}
 
     public void landOn(Player P){
+        System.out.println(P.getName() + " landed " + super.toString());
+        System.out.println(P.getName() + " paid " + getPrice());
         P.pay(price);
+        System.out.println(P.getName() + " has $" + P.money());
+        P.endTurn();
     }
+
+    public void setOwner(Player P){}
+    public String getOwner(){return "";}
 }
