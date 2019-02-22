@@ -13,10 +13,10 @@ public class GoToRestroom extends MonopolySquare {
         System.out.println(P.getName() + "Go to restroom");
         P.pay(3);
         System.out.println(P.getName() + " paid $3");
-        System.out.println(P.getName() + " has $" + P.money());
         if (P.money() < 0){
             throw new BankruptException("bankrupt");
         }
+        System.out.println(P.getName() + " has $" + P.money());
 
 
     }

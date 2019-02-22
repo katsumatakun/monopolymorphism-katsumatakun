@@ -53,10 +53,11 @@ public class Property extends MonopolySquare {
             owner.earn(price);
             System.out.println(owner.getName() + " earned $" + getPrice());
         }
-        System.out.println(P.getName() + " has $" + P.money());
-        P.endTurn();
+
         if (P.money() <= 0){
             throw new BankruptException("bankrupt");
         }
+        System.out.println(P.getName() + " has $" + P.money());
+        P.endTurn();
     }
 }
