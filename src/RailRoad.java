@@ -6,7 +6,7 @@ public class RailRoad extends MonopolySquare {
         }
 
         public void landOn(Player P){
-        System.out.println( " " + P.getName() + " moves to RailRoad");
+        System.out.println( " " + P.getName() + " moves to " +  name);
         }
         public void setOwner(Player P){}
         public String getOwner(){return "";}

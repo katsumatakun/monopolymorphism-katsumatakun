@@ -11,43 +11,62 @@ public class MonopolyGame {
 		board = new MonopolySquare[32];
 		dice = new Random();
 		lc = new LooseChange();
+		chanceCardDeck = new ChanceDeck();
+
 
 
 		Property pup1 = new Property("pup1");
 		pup1.AddSpeciality("purple", 1, 1);
+		chanceCardDeck.addCard(pup1);
 		Property pup2 = new Property("pup2");
 		pup2.AddSpeciality("purple", 2, 1);
+		chanceCardDeck.addCard(pup2);
 		Property wh1 = new Property("wh1");
 		wh1.AddSpeciality("white", 1, 2);
+		chanceCardDeck.addCard(wh1);
 		Property wh2 = new Property("wh2");
 		wh2.AddSpeciality("white", 2, 2);
+		chanceCardDeck.addCard(wh2);
 		Property mag1 = new Property("mag1");
 		mag1.AddSpeciality("magenta", 1, 2);
+		chanceCardDeck.addCard(mag1);
 		Property mag2 = new Property("mag2");
 		mag2.AddSpeciality("magenta", 2, 2);
+		chanceCardDeck.addCard(mag2);
 		Property ora1 = new Property("ora1");
 		ora1.AddSpeciality("orange", 1, 3);
+		chanceCardDeck.addCard(ora1);
 		Property ora2 = new Property("ora2");
 		ora2.AddSpeciality("orange", 2, 3);
+		chanceCardDeck.addCard(ora2);
 
 
 		Property rd1 = new Property("rd1");
 		rd1.AddSpeciality("red", 1, 3);
+		chanceCardDeck.addCard(rd1);
 		Property rd2 = new Property("rd2");
 		rd2.AddSpeciality("red", 2, 3);
+		chanceCardDeck.addCard(rd2);
 		Property ye1 = new Property("ye1");
 		ye1.AddSpeciality("yellow", 1, 4);
+		chanceCardDeck.addCard(ye1);
 		Property ye2 = new Property("ye2");
 		ye2.AddSpeciality("yellow", 2, 4);
+		chanceCardDeck.addCard(ye2);
 		Property gre1 = new Property("gre1");
 		gre1.AddSpeciality("green", 1, 4);
+		chanceCardDeck.addCard(gre1);
 		Property gre2 = new Property("gre2");
 		gre2.AddSpeciality("green", 2, 4);
+		chanceCardDeck.addCard(gre2);
 		Property bl1 = new Property("bl1");
 		bl1.AddSpeciality("blue", 1, 5);
+		chanceCardDeck.addCard(bl1);
 		Property bl2 = new Property("bl2");
 		bl2.AddSpeciality("blue", 2, 5);
+		chanceCardDeck.addCard(bl2);
 
+		chanceCardDeck.shuffleDeck();
 		Tax fire = new Tax("fire works");
 		fire.setPrice(2);
 		Tax water = new Tax("water show");
@@ -86,7 +105,6 @@ public class MonopolyGame {
 		board[29] = new RailRoad("RR4");
 		board[30] = bl1;
 		board[31] = bl2;
-		chanceCardDeck = new ChanceDeck();
 
 
 	}
@@ -106,34 +124,6 @@ public class MonopolyGame {
 					System.exit(0);
 				}
 
-			/*try {
-				while (p1.isMyTurn()) {
-					System.out.println(p1.getName()+" turn");
-					int num = dice.nextInt(6) + 1;
-					System.out.println(p1.getName() +" rolls "+num);
-					p1.move(num);
-					board[p1.checkPlace()].landOn(p1);
-					if (isLoose(p1.checkPlace())) {
-						System.out.println(p1.getName() + " earned $" + lc.checkBalance());
-						p1.earn(lc.taken());
-						System.out.println(p1.getName() + " has $" + p1.money());
-						p1.endTurn();
-
-					} else if (isChanceSpot(p1.checkPlace())) {
-						cc = chanceCardDeck.drew();
-						chanceCardImplement(cc, p1, p2);
-					} else if (isGoToRestroom(p1.checkPlace())) {
-						lc.add(3);
-						p1.goToRestroom();
-						p1.endTurn();
-					}
-
-				}
-
-			} catch (BankruptException e) {
-				System.out.println(p1.getName() + " " + e.getMessage());
-				System.exit(0);
-			}*/
 			}
 			p2.startTurn();
 			while (p2.isMyTurn()) {
@@ -144,33 +134,6 @@ public class MonopolyGame {
 					System.out.println(p2.getName() + " " + e.getMessage());
 					System.exit(0);
 				}
-			/*try {
-				while (p2.isMyTurn()) {
-					System.out.println(p2.getName()+" turn");
-					int num = dice.nextInt(6) + 1;
-					System.out.println(p2.getName()+" rolls "+num);
-					p2.move(num);
-					board[p2.checkPlace()].landOn(p2);
-					if (isLoose(p2.checkPlace())) {
-						System.out.println(p2.getName() + " earned $" + lc.checkBalance());
-						p2.earn(lc.taken());
-						System.out.println(p2.getName() + " has $" + p2.money());
-						p2.endTurn();
-					} else if (isChanceSpot(p2.checkPlace())) {
-						cc = chanceCardDeck.drew();
-						chanceCardImplement(cc, p2, p1);
-					} else if (isGoToRestroom(p1.checkPlace())) {
-						lc.add(3);
-						p2.goToRestroom();
-						p2.endTurn();
-					}
-
-				}
-
-			} catch (BankruptException e) {
-				System.out.println(p2.getName() + " " + e.getMessage());
-				System.exit(0);
-			}*/
 			}
 			p1.startTurn();
 
@@ -223,56 +186,7 @@ public class MonopolyGame {
 
 	}
 
-	/*private void chanceCardImplement(ChanceCard cc, Player p1, Player p2){
 
-		if(isGoToColor(cc)){
-			System.out.println(p1.getName() + " got " +cc.getColor() + cc.getNum());
-			p1.jumpLocation(cc.getNum(), cc.getColor());
-			try {
-				board[p1.checkPlace()].landOn(p1);
-			}
-			catch (BankruptException e){
-				System.out.println(p1.getName() + " " + e.getMessage());
-				System.exit(0);
-			}
-
-		}
-		else
-		{
-			System.out.println(p1.getName() + " got " +cc.getColor() + " Ticket Booth Card");
-			if (board[colorLoc(cc.getColor())].getOwner() == ""){
-				System.out.println(p1.getName() + " becomes the owner of " + cc.getColor()+ "1");
-				board[colorLoc(cc.getColor())].setOwner(p1);
-			}
-			else if ((board[colorLoc(cc.getColor())+1].getOwner() == "")){
-				System.out.println(p1.getName() + " becomes the owner of "+ cc.getColor()+ "2");
-				board[colorLoc(cc.getColor())].setOwner(p1); }
-			else{
-					if (board[colorLoc(cc.getColor())].getOwner() == p2.getName() && board[colorLoc(cc.getColor())+1].getOwner() == p2.getName()){
-
-						System.out.println(p1.getName() + " has no place to put a Ticket Booth");
-						System.out.println(p1.getName() + " will drew again");
-						cc = chanceCardDeck.drew();
-						chanceCardImplement(cc, p1, p2);
-					}
-					else if (board[colorLoc(cc.getColor())].getOwner() == p1.getName() && board[colorLoc(cc.getColor())+1].getOwner() == p2.getName())
-					{
-                        System.out.println(p1.getName() + " becomes the owner of "+ cc.getColor()+ "2");
-						board[colorLoc(cc.getColor())+1].setOwner(p1);
-					}
-					else if (board[colorLoc(cc.getColor())].getOwner() == p2.getName() && board[colorLoc(cc.getColor())+1].getOwner() == p1.getName()){
-                        System.out.println(p1.getName() + " becomes the owner of "+ cc.getColor()+ "1");
-                    }
-					else{
-                        System.out.println(p1.getName() + " has already owned "+ cc.getColor() + "1 and 2");
-                    }
-
-			}
-            System.out.println(p1.getName() + " has $" + p1.money());
-            p1.endTurn();
-
-		}
-	}*/
 	private void playerTurn(Player p) throws BankruptException{
         ChanceCard cc;
         //System.out.println(p.getName()+" turn");
@@ -281,9 +195,8 @@ public class MonopolyGame {
         p.move(num);
         board[p.checkPlace()].landOn(p);
         if (isLoose(p.checkPlace())) {
-            System.out.println(p.getName() + " earned $" + lc.checkBalance());
+            System.out.println(" " + p.getName() + " earned $" + lc.checkBalance());
             p.earn(lc.taken());
-            System.out.println(p.getName() + " has $" + p.money());
             p.endTurn();
 
         } else if (isChanceSpot(p.checkPlace())) {
@@ -303,7 +216,7 @@ public class MonopolyGame {
 
         if(isGoToColor(cc)){
 
-            System.out.println(" " +p1.getName() + " got Go To " + cc.getColor()+cc.getNum());
+            System.out.println(" " +p1.getName() + " got Go To " + cc.getName());
             p1.jumpLocation(cc.getNum(), cc.getColor());
 
             board[p1.checkPlace()].landOn(p1);
@@ -314,30 +227,37 @@ public class MonopolyGame {
             System.out.println(" FREE TICKET BOOTH: "+cc.getColor() );
             if (board[colorLoc(cc.getColor())].getOwner() == ""){
                 board[colorLoc(cc.getColor())].setOwner(p1);
+				p1.endTurn();
             }
             else if ((board[colorLoc(cc.getColor())+1].getOwner() == "")){
-                board[colorLoc(cc.getColor())].setOwner(p1); }
+                board[colorLoc(cc.getColor())].setOwner(p1);
+				p1.endTurn();
+            	}
             else{
                 if (board[colorLoc(cc.getColor())].getOwner() != p1.getName()&& board[colorLoc(cc.getColor())].getOwner() == board[colorLoc(cc.getColor())+1].getOwner()){
 
-                    System.out.println(p1.getName() + " has no place to put a Ticket Booth");
-                    System.out.println(p1.getName() + " will drew again");
+                    System.out.println("  " + p1.getName() + " has no place to put a Ticket Booth");
+                    System.out.println("  " + p1.getName() + " will drew again");
                     cc = chanceCardDeck.drew();
+                    //call the itself recursively
                     chanceCardImplement(cc, p1);
                 }
                 else if (board[colorLoc(cc.getColor())].getOwner() == p1.getName())
                 {
                     board[colorLoc(cc.getColor())+1].setOwner(p1);
+					p1.endTurn();
                 }
                 else if (board[colorLoc(cc.getColor())+1].getOwner() == p1.getName()){
 					board[colorLoc(cc.getColor())].setOwner(p1);
+					p1.endTurn();
                 }
                 else{
-                    System.out.println(p1.getName() + " has already owned "+ cc.getColor() + "1 and 2");
+                    System.out.println("  " + p1.getName() + " has already owned "+ cc.getColor() + "1 and 2");
+					p1.endTurn();
                 }
 
             }
-            p1.endTurn();
+
 
         }
     }

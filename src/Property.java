@@ -28,7 +28,13 @@ public class Property extends MonopolySquare {
 
     public void setOwner(Player P){
         System.out.println("  "+P.getName() + " takes " + name);
+        if(owner.getName() != "") {
+            System.out.println("  " + owner.getName() + " lost " + name);
+            owner.looseProperty();
+        }
+        P.purchesProperty();
         owner = P;
+
     }
 
     public String getOwner(){

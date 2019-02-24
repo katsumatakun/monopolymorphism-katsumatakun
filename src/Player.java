@@ -116,21 +116,4 @@ public class Player {
 		//System.out.println(name + " moved " + color + n);
 	}
 
-
-
-	/*public void drewChanceCard(){
-		chanceCard = true;
-	}
-
-	public void setChanceCardFalse(){
-		chanceCard = false;
-	}
-
-	public int checkPlace(){
-		return location;
-	}
-
-	public int roll(){
-		return d.roll();
-	}*/
 }

@@ -15,35 +15,7 @@ public class ChanceDeck {
 	public ChanceDeck(){
 		// Needs code
 		deck = new ArrayList<ChanceCard>();
-
 		next_index = 0;
-		GoToColor p1 = new GoToColor("purple", 1);
-		deck.add(p1);
-		deck.add(new GoToColor("purple", 2));
-		deck.add(new GoToColor("white", 1));
-		deck.add(new GoToColor("white", 2));
-		deck.add(new GoToColor("magenta", 1));
-		deck.add(new GoToColor("magenta", 2));
-		deck.add(new GoToColor("orange", 1));
-		deck.add(new GoToColor("orange", 2));
-		deck.add(new GoToColor("red", 1));
-		deck.add(new GoToColor("red", 2));
-		deck.add(new GoToColor("yellow", 1));
-		deck.add(new GoToColor("yellow", 2));
-		deck.add(new GoToColor("green", 1));
-		deck.add(new GoToColor("green", 2));
-		deck.add(new GoToColor("blue", 1));
-		deck.add(new GoToColor("blue", 2));
-
-		deck.add(new FreeTicketBooth(0,"purple"));
-		deck.add(new FreeTicketBooth(0,"white"));
-		deck.add(new FreeTicketBooth(0,"magenta"));
-		deck.add(new FreeTicketBooth(0,"orange"));
-		deck.add(new FreeTicketBooth(0,"red"));
-		deck.add(new FreeTicketBooth(0,"yellow"));
-		deck.add(new FreeTicketBooth(0,"green"));
-		deck.add(new FreeTicketBooth(0,"blue"));
-		Collections.shuffle(deck);
 
 	}
 
@@ -56,7 +28,26 @@ public class ChanceDeck {
 
 	}
 
+	public void addCard(Property p){
+	    int ind = 0;
+	    if(deck.size() != 0) {
+            while (ind != deck.size() && deck.get(ind).getColor() != p.getColor()) {
+                ind++;
+            }
+            if(ind == deck.size() && deck.get(ind-1).getColor() != p.getColor()){
+                deck.add(new FreeTicketBooth(p.getColor(), 0, p.getColor()));
+            }
+        }
+	    else {
+            deck.add(new FreeTicketBooth(p.getColor(), 0, p.getColor()));
+        }
 
 
-	//Needs extra Methods.
+
+        deck.add(new GoToColor(p.toString(), p.getColor(), p.getNumber()));
+    }
+
+    public void shuffleDeck() {
+        Collections.shuffle(deck);
+    }
 }

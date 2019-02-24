@@ -11,7 +11,7 @@ public class Go extends MonopolySquare {
     }
 
     public void landOn(Player P) {
-        System.out.println(P.getName() + " moves to Go");
+        System.out.println(" " + P.getName() + " moves to Go");
         //System.out.println(P.getName() + " has $" + P.money());
         P.endTurn();
     }
