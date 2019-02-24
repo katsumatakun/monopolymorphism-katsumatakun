@@ -22,7 +22,7 @@ public class Tax extends MonopolySquare {
         }
         System.out.println(" " + P.getName() + " Paid " + getPrice() + " for " + super.toString());
         P.pay(price);
-        P.endTurn();
+        //P.endTurn();
     }
 
     public void setOwner(Player P){}

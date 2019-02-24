@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import static java.lang.Math.*;
+
 public class MonopolyGame {
 	private MonopolySquare[] board;
 	private Random dice;
@@ -121,6 +123,7 @@ public class MonopolyGame {
 				}
 				catch (BankruptException e){
 					System.out.println(p1.getName() + " " + e.getMessage());
+                    System.out.println("Winner is " + p2.getName());
 					System.exit(0);
 				}
 
@@ -132,7 +135,10 @@ public class MonopolyGame {
 				}
 				catch (BankruptException e){
 					System.out.println(p2.getName() + " " + e.getMessage());
+                    System.out.println("Winner is " + p1.getName());
 					System.exit(0);
+
+
 				}
 			}
 			p1.startTurn();
@@ -140,11 +146,18 @@ public class MonopolyGame {
 		}
 
 
+
+
+
 	}
 
 	private boolean isLoose(int index){
 		return board[index] instanceof Loose;
 	}
+
+    private boolean isTax(int index){
+        return board[index] instanceof Tax;
+    }
 
 	private boolean isChanceSpot(int index){
 		return board[index] instanceof ChanceSpot;
@@ -195,12 +208,19 @@ public class MonopolyGame {
             p.earn(lc.taken());
             p.endTurn();
 
-        } else if (isChanceSpot(p.checkPlace())) {
+        }
+        else if (isChanceSpot(p.checkPlace())) {
             cc = chanceCardDeck.drew();
             chanceCardImplement(cc, p);
 
 
-        } else if (isGoToRestroom(p.checkPlace())) {
+        }
+        else if (isTax(p.checkPlace())) {
+            lc.add(2);
+            p.endTurn();
+        }
+
+        else if (isGoToRestroom(p.checkPlace())) {
             lc.add(3);
             p.goToRestroom();
             p.endTurn();

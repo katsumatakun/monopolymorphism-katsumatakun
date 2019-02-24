@@ -13,6 +13,8 @@ public class LooseChange {
 	public int taken(){
 		int money = balance;
 		balance = 0;
+        System.out.println(" All of the money at LooseChange was taken");
+		System.out.println(" There is no money at LooseChange now");
 		return money;
 	}
 
@@ -23,6 +25,8 @@ public class LooseChange {
 	public void add (int amount ){
 
 		balance += amount;
+		System.out.println(" $" + amount + " is added to LooseChange.");
+        System.out.println(" There is $" + balance + " on LooseChange now.");
 	}
 
 

@@ -5,8 +5,7 @@ public class RestRoom extends MonopolySquare {
     }
 
     public void landOn(Player P){
-        System.out.println(P.getName() + " landed Restroom");
-        System.out.println(P.getName() + " has $" + P.money());
+        System.out.println(" " + P.getName() + " moves to Restroom");
         P.endTurn();
     }
     public void setOwner(Player P){}

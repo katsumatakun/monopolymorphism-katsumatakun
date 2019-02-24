@@ -10,7 +10,7 @@ public class GoToRestroom extends MonopolySquare {
 
         public void landOn(Player P) throws BankruptException {
 
-        System.out.println(" " + P.getName() + "moves to Go to restroom");
+        System.out.println(" " + P.getName() + " moves to Go to restroom");
         P.pay(3);
 
         if (P.money() < 3){
