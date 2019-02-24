@@ -154,10 +154,6 @@ public class MonopolyGame {
 		return cc instanceof GoToColor;
 	}
 
-	private  boolean isFreeChicketBooth(ChanceCard cc){
-		return cc instanceof FreeTicketBooth;
-	}
-
 	private boolean isGoToRestroom(int index){
 		return board[index] instanceof GoToRestroom;
 	}

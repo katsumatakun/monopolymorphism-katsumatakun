@@ -3,7 +3,7 @@ public class Player {
 	private String name;
 	private boolean isTurn;
 	private int location;
-	private int num_propaties;
+	private int num_properties;
 
 	public Player(String n){
 		name = n;
@@ -15,19 +15,16 @@ public class Player {
 
 	/* Whenever you adjust the location, don't forget to check
 	to see if you passed "Go".   The instructions explicitly said
-	that this was the responsiblity of the player, so this
+	that this was the responsibility of the player, so this
 	functionality belongs here.
 
 	(unless you are told to go "directly" to location, i.e. jail/restroom)
 	 */
-	public int getProperty(){
-		return num_propaties;
-	}
 
-	public void looseProperty(){num_propaties -=1;}
+	public void looseProperty(){num_properties -=1;}
 
 	public void purchesProperty(){
-		num_propaties += 1;
+		num_properties += 1;
 	}
 
 	public void pay(int amount){
@@ -41,10 +38,6 @@ public class Player {
 	public int money(){
 		return bankAccount;
 	}
-
-	/*public int gettickets(){
-		return tickets;
-	}*/
 
 	public String getName(){
 		return name;
@@ -70,7 +63,7 @@ public class Player {
 
 	public void endTurn (){
 			isTurn  = false;
-			System.out.println(name+ " Ends turn with " +num_propaties + " properties and $" + bankAccount );
+			System.out.println(name+ " Ends turn with " +num_properties + " properties and $" + bankAccount );
 	}
 
 	public void startTurn (){
@@ -112,8 +105,6 @@ public class Player {
 			earn(2);
 		}
 		location = next_location;
-		String n = Integer.toString(num);
-		//System.out.println(name + " moved " + color + n);
 	}
 
 }
