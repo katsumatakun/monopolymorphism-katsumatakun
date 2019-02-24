@@ -64,4 +64,8 @@ public class ChanceDeck {
     public void shuffleDeck() {
         Collections.shuffle(deck);
     }
+
+    public void resetIndex(){
+    	next_index = 0;
+	}
 }

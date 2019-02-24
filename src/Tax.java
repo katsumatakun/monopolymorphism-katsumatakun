@@ -6,6 +6,7 @@
 public class Tax extends MonopolySquare {
 
     private int price;
+    private LooseChange lc;
 
     public Tax(String n){
         super(n);
@@ -14,6 +15,9 @@ public class Tax extends MonopolySquare {
     public void setPrice(int price){
 
         this.price = price;
+    }
+    public void setLc(LooseChange lc){
+        this.lc = lc;
     }
 
     public int getPrice(){
@@ -27,7 +31,7 @@ public class Tax extends MonopolySquare {
         }
         System.out.println(" " + P.getName() + " Paid " + getPrice() + " for " + super.toString());
         P.pay(price);
-        MonopolyGame.getLc().add(2);
+        lc.add(2);
         P.endTurn();
     }
 

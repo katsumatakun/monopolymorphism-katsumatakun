@@ -2,6 +2,12 @@
 
 public class ChanceSpot extends MonopolySquare {
 
+    private ChanceDeck cDeck;
+
+    public void setCD(ChanceDeck cDeck){
+        this.cDeck = cDeck;
+    }
+
     public ChanceSpot(String n){
         super(n);
     }
@@ -13,8 +19,8 @@ public class ChanceSpot extends MonopolySquare {
 
     public void landOn(Player P) throws BankruptException{
         System.out.println(" " + P.getName() + " moves to Chance");
-        ChanceCard cc = MonopolyGame.getChanceCardDeck().drew();
-        cc.chanceCardImplement(P);
+        ChanceCard cc = cDeck.drew();
+        cc.chanceCardImplement(P, cDeck);
     }
 
     /*

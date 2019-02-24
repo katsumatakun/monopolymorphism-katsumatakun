@@ -4,8 +4,12 @@
 
 public class Loose extends MonopolySquare {
 
+    private LooseChange lc;
     public Loose(String n){
         super(n);
+    }
+    public void addLc(LooseChange lc){
+        this.lc = lc;
     }
 
     @Override
@@ -15,8 +19,8 @@ public class Loose extends MonopolySquare {
 
     public void landOn(Player P) {
         System.out.println(" " + P.getName() + " moves to " + name);
-        System.out.println(" " + P.getName() + " earned $" + MonopolyGame.getLc().checkBalance());
-        P.earn(MonopolyGame.getLc().taken());
+        System.out.println(" " + P.getName() + " earned $" + lc.checkBalance());
+        P.earn(lc.taken());
         P.endTurn();
 
     }

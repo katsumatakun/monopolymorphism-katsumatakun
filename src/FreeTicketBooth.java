@@ -6,7 +6,7 @@ public class FreeTicketBooth extends ChanceCard {
         super(name, color, num);
     }
 
-    public void chanceCardImplement(Player p) throws BankruptException{
+    public void chanceCardImplement(Player p, ChanceDeck cDeck) throws BankruptException{
         System.out.println(" FREE TICKET BOOTH: "+getColor() );
         //if property numbered 1 has not been owned
         if (MonopolyGame.getBoard()[colorLoc(getColor())].getOwner() == ""){
@@ -26,10 +26,10 @@ public class FreeTicketBooth extends ChanceCard {
 
                 System.out.println("  " + p.getName() + " has no place to put a Ticket Booth");
                 System.out.println("  " + p.getName() + " will drew again");
-                ChanceCard cc1 = MonopolyGame.getChanceCardDeck().drew();
+                ChanceCard cc1 = cDeck.drew();
                 //call the itself recursively
                 //Turn not end
-                cc1.chanceCardImplement(p);
+                cc1.chanceCardImplement(p, cDeck);
             }
             //there are 3 cases left
 

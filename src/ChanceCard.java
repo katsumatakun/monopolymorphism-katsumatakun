@@ -13,7 +13,7 @@ public abstract class ChanceCard{
         this.num = num;
     }
 
-    public abstract void chanceCardImplement(Player p) throws BankruptException;
+    public abstract void chanceCardImplement(Player p, ChanceDeck cDeck) throws BankruptException;
 
     public int getNum(){ return num;}
 

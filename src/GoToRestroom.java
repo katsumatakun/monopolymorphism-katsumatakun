@@ -7,6 +7,12 @@ public class GoToRestroom extends MonopolySquare {
         super(name);
     }
 
+    private LooseChange lc;
+
+    public void setLc(LooseChange lc){
+        this.lc = lc;
+    }
+
         @Override
         public String toString() {
             return name;
@@ -22,7 +28,7 @@ public class GoToRestroom extends MonopolySquare {
         }
         System.out.println(" " + P.getName() + " paid $3");
         System.out.println(P.getName() + " has $" + P.money());
-        MonopolyGame.getLc().add(3);
+        lc.add(3);
         P.goToRestroom();
         P.endTurn();
 
