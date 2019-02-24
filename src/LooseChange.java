@@ -1,3 +1,7 @@
+/*
+	Loose Change Object
+*/
+
 public class LooseChange {
 
 	private int balance;
@@ -10,6 +14,9 @@ public class LooseChange {
 	// This is how my brother always cheated -- snitching money from the
 	// loose change.   I'm not bitter.
 
+	/*
+		return current balance and reset the balance
+	*/
 	public int taken(){
 		int money = balance;
 		balance = 0;
@@ -17,7 +24,9 @@ public class LooseChange {
 		System.out.println(" There is no money at LooseChange now");
 		return money;
 	}
-
+	/*
+		just return balance, but not reset
+	*/
 	public int checkBalance (){
 		return balance;
 	}

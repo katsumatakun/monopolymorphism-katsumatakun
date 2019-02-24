@@ -1,4 +1,6 @@
-import java.util.ArrayList;
+/*
+  This is another actual chance card class
+    */
 
 public class GoToColor extends ChanceCard {
 
@@ -8,6 +10,15 @@ public class GoToColor extends ChanceCard {
 
     }
 
+    @Override
+    /*
+        This class has its own implementation which is simpler than the other
+    */
+    public void chanceCardImplement(Player p) throws BankruptException {
+        System.out.println(" " +p.getName() + " got Go To " + getName());
+        p.jumpLocation(getNum(), getColor());
 
+        MonopolyGame.getBoard()[p.checkPlace()].landOn(p);
+    }
 
 }

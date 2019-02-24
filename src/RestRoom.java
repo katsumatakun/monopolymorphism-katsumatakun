@@ -1,3 +1,7 @@
+/*
+    Actual class for Restroom
+    nothing will happen in the landOn method
+*/
 public class RestRoom extends MonopolySquare {
 
     public RestRoom(String n){
@@ -8,6 +12,11 @@ public class RestRoom extends MonopolySquare {
         System.out.println(" " + P.getName() + " moves to Restroom");
         P.endTurn();
     }
+
+    /*
+       Since these are abstract, we have to override, but they will not be called
+       and will not do anything
+   */
     public void setOwner(Player P){}
     public String getOwner(){return "";}
 }

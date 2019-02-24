@@ -3,10 +3,15 @@ import java.util.Random;
 import static java.lang.Math.*;
 
 public class MonopolyGame {
-	private MonopolySquare[] board;
-	private Random dice;
-	private LooseChange lc;
-	private ChanceDeck chanceCardDeck;
+    /*
+      these variables are class-level, and not instance level
+      these statics allows other classes to have access to these variables
+    */
+
+	private static MonopolySquare[] board;
+	private static Random dice;
+	private static LooseChange lc;
+	private static ChanceDeck chanceCardDeck;
 
 	public MonopolyGame(){
 
@@ -15,8 +20,10 @@ public class MonopolyGame {
 		lc = new LooseChange();
 		chanceCardDeck = new ChanceDeck();
 
-
-
+		/*
+		    from here a bunch of initialization
+		    I decide to keep track on properties by number and color as well as name
+		*/
 		Property pup1 = new Property("pup1");
 		pup1.AddSpeciality("purple", 1, 1);
 		chanceCardDeck.addCard(pup1);
@@ -41,8 +48,6 @@ public class MonopolyGame {
 		Property ora2 = new Property("ora2");
 		ora2.AddSpeciality("orange", 2, 3);
 		chanceCardDeck.addCard(ora2);
-
-
 		Property rd1 = new Property("rd1");
 		rd1.AddSpeciality("red", 1, 3);
 		chanceCardDeck.addCard(rd1);
@@ -109,7 +114,11 @@ public class MonopolyGame {
 		board[31] = bl2;
 
 
+
 	}
+	/*
+	    This function implements game
+	*/
 	public void play() {
 		System.out.println("Play Game");
 		Player p1 = new Player("Player 1");
@@ -142,144 +151,31 @@ public class MonopolyGame {
 				}
 			}
 			p1.startTurn();
-
 		}
-
-
-
-
-
 	}
 
-	private boolean isLoose(int index){
-		return board[index] instanceof Loose;
-	}
-
-    private boolean isTax(int index){
-        return board[index] instanceof Tax;
+    /*
+        other classes will access class variables thorough these methods
+    */
+    public static LooseChange getLc() {
+        return lc;
     }
 
-	private boolean isChanceSpot(int index){
-		return board[index] instanceof ChanceSpot;
-	}
+    public static ChanceDeck getChanceCardDeck() {
+        return chanceCardDeck;
+    }
 
-	private  boolean isGoToColor(ChanceCard cc){
-		return cc instanceof GoToColor;
-	}
+    public static MonopolySquare[] getBoard() {
+        return board;
+    }
 
-	private boolean isGoToRestroom(int index){
-		return board[index] instanceof GoToRestroom;
-	}
-
-	private int colorLoc(String color) {
-		switch (color) {
-			case "purple":
-				return 2;
-			case "white":
-				return 6;
-			case "magenta":
-				return 11;
-			case "orange":
-				return 14;
-			case "red":
-				return 18;
-			case "yellow":
-				return 22;
-			case "green":
-				return 27;
-			case "blue":
-				return 30;
-			default:
-				return 0;
-		}
-
-	}
-
-
-	private void playerTurn(Player p) throws BankruptException{
-        ChanceCard cc;
-        //System.out.println(p.getName()+" turn");
+    /*
+        This function implement a player's turn
+    */
+    private void playerTurn(Player p) throws BankruptException{
         int num = dice.nextInt(6) + 1;
         System.out.println(p.getName() +" Rolls: "+num);
         p.move(num);
         board[p.checkPlace()].landOn(p);
-        if (isLoose(p.checkPlace())) {
-            System.out.println(" " + p.getName() + " earned $" + lc.checkBalance());
-            p.earn(lc.taken());
-            p.endTurn();
-
-        }
-        else if (isChanceSpot(p.checkPlace())) {
-            cc = chanceCardDeck.drew();
-            chanceCardImplement(cc, p);
-
-
-        }
-        else if (isTax(p.checkPlace())) {
-            lc.add(2);
-            p.endTurn();
-        }
-
-        else if (isGoToRestroom(p.checkPlace())) {
-            lc.add(3);
-            p.goToRestroom();
-            p.endTurn();
-        }
-
     }
-
-    private void chanceCardImplement(ChanceCard cc, Player p1) throws BankruptException{
-
-        if(isGoToColor(cc)){
-
-            System.out.println(" " +p1.getName() + " got Go To " + cc.getName());
-            p1.jumpLocation(cc.getNum(), cc.getColor());
-
-            board[p1.checkPlace()].landOn(p1);
-
-        }
-        else
-        {
-            System.out.println(" FREE TICKET BOOTH: "+cc.getColor() );
-            if (board[colorLoc(cc.getColor())].getOwner() == ""){
-                board[colorLoc(cc.getColor())].setOwner(p1);
-				p1.endTurn();
-            }
-            else if ((board[colorLoc(cc.getColor())+1].getOwner() == "")){
-                board[colorLoc(cc.getColor())].setOwner(p1);
-				p1.endTurn();
-            	}
-            else{
-                if (board[colorLoc(cc.getColor())].getOwner() != p1.getName()&& board[colorLoc(cc.getColor())].getOwner() == board[colorLoc(cc.getColor())+1].getOwner()){
-
-                    System.out.println("  " + p1.getName() + " has no place to put a Ticket Booth");
-                    System.out.println("  " + p1.getName() + " will drew again");
-                    cc = chanceCardDeck.drew();
-                    //call the itself recursively
-                    chanceCardImplement(cc, p1);
-                }
-                else if (board[colorLoc(cc.getColor())].getOwner() == p1.getName())
-                {
-                    board[colorLoc(cc.getColor())+1].setOwner(p1);
-					p1.endTurn();
-                }
-                else if (board[colorLoc(cc.getColor())+1].getOwner() == p1.getName()){
-					board[colorLoc(cc.getColor())].setOwner(p1);
-					p1.endTurn();
-                }
-                else{
-                    System.out.println("  " + p1.getName() + " has already owned "+ cc.getColor() + "1 and 2");
-					p1.endTurn();
-                }
-
-            }
-
-
-        }
-    }
-
-
-
-
-
 }

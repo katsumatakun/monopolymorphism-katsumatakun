@@ -9,6 +9,13 @@ public class ChanceDeck {
 	- What do you do if you have used all the cards?
 	- How does the deck get populated?
 	 */
+
+	/*
+		Use array list for a deck
+		Instead of popping element each time, just keep track on the next card that should be
+		drown.
+		It follows the rule for reusing.
+	*/
 	private ArrayList<ChanceCard> deck;
 	private int next_index;
 
@@ -27,6 +34,12 @@ public class ChanceDeck {
 		return deck.get(temp_index);
 
 	}
+	/*
+		This method will implement adding card to a deck.
+		If there is no free ticket of the color that the input property has,
+		Free Ticket Booth card for the color will be automatically added
+		to the deck.
+	*/
 
 	public void addCard(Property p){
 	    int ind = 0;
@@ -47,6 +60,7 @@ public class ChanceDeck {
         deck.add(new GoToColor(p.toString(), p.getColor(), p.getNumber()));
     }
 
+    /*just shuffleDeck*/
     public void shuffleDeck() {
         Collections.shuffle(deck);
     }

@@ -1,3 +1,8 @@
+/*
+    Tax class
+    Each instance can have different prices
+*/
+
 public class Tax extends MonopolySquare {
 
     private int price;
@@ -22,9 +27,14 @@ public class Tax extends MonopolySquare {
         }
         System.out.println(" " + P.getName() + " Paid " + getPrice() + " for " + super.toString());
         P.pay(price);
-        //P.endTurn();
+        MonopolyGame.getLc().add(2);
+        P.endTurn();
     }
 
+    /*
+        Since these are abstract, we have to override, but they will not be called
+        and will not do anything
+    */
     public void setOwner(Player P){}
     public String getOwner(){return "";}
 }

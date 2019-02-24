@@ -1,5 +1,13 @@
+/*
+    One of the most important classes
+*/
+
+
 public class Property extends MonopolySquare {
 
+    /*
+        It has specialities that allow program to distinguish one from another
+    */
     private String color;
     private int number;
     private int price;
@@ -8,6 +16,7 @@ public class Property extends MonopolySquare {
     public Property(String name){
         super(name);
     }
+
 
     public void AddSpeciality(String color, int number, int price){
         this.color = color;
@@ -25,7 +34,9 @@ public class Property extends MonopolySquare {
     public String getColor(){
         return color;
     }
-
+    /*
+        It someone has owned the property, the owner will change
+    */
     public void setOwner(Player P){
         System.out.println("  "+P.getName() + " takes " + name);
         if(owner.getName() != "") {

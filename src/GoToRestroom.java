@@ -1,3 +1,7 @@
+/*
+    actual place object
+*/
+
 public class GoToRestroom extends MonopolySquare {
     public GoToRestroom(String name){
         super(name);
@@ -18,10 +22,16 @@ public class GoToRestroom extends MonopolySquare {
         }
         System.out.println(" " + P.getName() + " paid $3");
         System.out.println(P.getName() + " has $" + P.money());
+        MonopolyGame.getLc().add(3);
+        P.goToRestroom();
+        P.endTurn();
 
 
     }
-
+    /*
+       Since these are abstract, we have to override, but they will not be called
+       and will not do anything
+   */
     public void setOwner(Player P){}
     public String getOwner(){return "";}
 }

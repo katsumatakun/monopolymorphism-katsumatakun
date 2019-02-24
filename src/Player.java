@@ -43,6 +43,10 @@ public class Player {
 		return name;
 	}
 
+
+	/*
+		This method will check if the player passed Go
+	*/
 	public void move (int dice){
 		int previous = location;
 		location = (location + dice) % 32;
@@ -73,7 +77,11 @@ public class Player {
 	public boolean isMyTurn(){
 		return isTurn;
 	}
-
+	/*
+	 	This method is associated with chance card.
+	 	It allows the player to jump the location, but
+	 	it will still check if the player passes Go
+	*/
 	public void jumpLocation(int num, String color){
 		int next_location = 0;
 		switch (color){

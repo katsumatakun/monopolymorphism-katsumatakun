@@ -21,6 +21,10 @@ public abstract class MonopolySquare {
 	//it is *possible* for this function to throw that Exception
 	// you have to figure out when it does as you implement this function
 
+
+	/*
+		These methods are for properties basically
+	*/
 	public abstract void setOwner(Player P);
 	public abstract String getOwner();
 }
