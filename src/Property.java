@@ -27,6 +27,7 @@ public class Property extends MonopolySquare {
     }
 
     public void setOwner(Player P){
+        System.out.println("  "+P.getName() + " takes " + name);
         owner = P;
     }
 
@@ -35,29 +36,34 @@ public class Property extends MonopolySquare {
     }
 
     public void landOn(Player P) throws BankruptException{
-        System.out.println(P.getName() + " land on " + getColor()+getNumber());
+        System.out.println(" " + P.getName() + " moves to " + name);
         if (owner.getName() == "")
         {
+
+            if (P.money() < getPrice()){
+                throw new BankruptException(" went bankrupt");
+            }
             P.pay(price);
-            System.out.println(P.getName() + " paid $" + getPrice());
+            System.out.println(" " + name + " is not owned; " + P.getName() + " purchased " + name + " for $" + getPrice());
             owner = P;
-            System.out.println(P.getName() + " become the owner");
+            P.purchesProperty();
         }
         else if (owner == P){
-
+            System.out.println(" " + P.getName() + " has already owned " + name);
         }
 
         else{
+            if (P.money() < getPrice()){
+                throw new BankruptException(" went bankrupt");
+            }
             P.pay(price);
-            System.out.println(P.getName() + " paid $" + getPrice());
+            System.out.println(" " + name + " is owned by " + owner.getName() );
+            System.out.println(" " + P.getName() + " paid $" + getPrice());
             owner.earn(price);
-            System.out.println(owner.getName() + " earned $" + getPrice());
+            System.out.println(" " + owner.getName() + " earned $" + getPrice());
         }
 
-        if (P.money() <= 0){
-            throw new BankruptException("bankrupt");
-        }
-        System.out.println(P.getName() + " has $" + P.money());
+
         P.endTurn();
     }
 }

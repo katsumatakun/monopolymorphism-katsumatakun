@@ -20,12 +20,14 @@ public class Player {
 
 	(unless you are told to go "directly" to location, i.e. jail/restroom)
 	 */
-	public int getPropaty(){
+	public int getProperty(){
 		return num_propaties;
 	}
 
-	public void changePropaty(int num){
-		num_propaties += num;
+	public void looseProperty(){num_propaties -=1;}
+
+	public void purchesProperty(){
+		num_propaties += 1;
 	}
 
 	public void pay(int amount){
@@ -52,7 +54,7 @@ public class Player {
 		int previous = location;
 		location = (location + dice) % 32;
 		if (previous > location){
-			System.out.println(name + " passed Go and earned $2");
+			System.out.println(" " + name + " passed Go and earned $2");
 			bankAccount += 2;
 		}
 	}
@@ -68,7 +70,7 @@ public class Player {
 
 	public void endTurn (){
 			isTurn  = false;
-			System.out.println(name+ "'s turn finish" );
+			System.out.println(name+ " Ends turn with " +num_propaties + " properties and $" + bankAccount );
 	}
 
 	public void startTurn (){
@@ -105,13 +107,13 @@ public class Player {
 			next_location++;
 		}
 		if (next_location < location){
-			System.out.println( name + " passed Go");
-			System.out.println(name + " earned $2");
+			System.out.println( " " + name + " passed Go");
+			System.out.println(" " + name + " earned $2");
 			earn(2);
 		}
 		location = next_location;
 		String n = Integer.toString(num);
-		System.out.println(name + " moved " + color + n);
+		//System.out.println(name + " moved " + color + n);
 	}
 
 

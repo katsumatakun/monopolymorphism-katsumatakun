@@ -15,13 +15,13 @@ public class Tax extends MonopolySquare {
         return price;}
 
     public void landOn(Player P) throws BankruptException{
-        System.out.println(P.getName() + " landed " + super.toString());
-        System.out.println(P.getName() + " paid " + getPrice());
-        P.pay(price);
-        if (P.money() < 0){
-            throw new BankruptException("bankrupt");
+        System.out.println(" " + P.getName() + " moves to " + super.toString());
+
+        if (P.money() < getPrice()){
+            throw new BankruptException("went bankrupt");
         }
-        System.out.println(P.getName() + " has $" + P.money());
+        System.out.println(" " + P.getName() + " Paid " + getPrice() + " for " + super.toString());
+        P.pay(price);
         P.endTurn();
     }
 
