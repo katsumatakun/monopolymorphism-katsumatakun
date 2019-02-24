@@ -26,5 +26,6 @@ public abstract class MonopolySquare {
 		These methods are for properties basically
 	*/
 	public abstract void setOwner(Player P);
+	public abstract void resetOwner();
 	public abstract String getOwner();
 }

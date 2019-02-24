@@ -83,4 +83,7 @@ public class Property extends MonopolySquare {
 
         P.endTurn();
     }
+    public void resetOwner(){
+        owner = new Player("");
+    }
 }

@@ -4,6 +4,11 @@
 
 public class GoToColor extends ChanceCard {
 
+    private MonopolySquare[] board;
+
+    public void setBoard(MonopolySquare[] board) {
+        this.board = board;
+    }
 
     public GoToColor(String name, String color, int num){
         super(name, color, num);
@@ -18,7 +23,7 @@ public class GoToColor extends ChanceCard {
         System.out.println(" " +p.getName() + " got Go To " + getName());
         p.jumpLocation(getNum(), getColor());
 
-        MonopolyGame.getBoard()[p.checkPlace()].landOn(p);
+        board[p.checkPlace()].landOn(p);
     }
 
 }

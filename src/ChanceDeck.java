@@ -17,6 +17,7 @@ public class ChanceDeck {
 		It follows the rule for reusing.
 	*/
 	private ArrayList<ChanceCard> deck;
+	private MonopolySquare[] board;
 	private int next_index;
 
 	public ChanceDeck(){
@@ -24,6 +25,10 @@ public class ChanceDeck {
 		deck = new ArrayList<ChanceCard>();
 		next_index = 0;
 
+	}
+
+	public void passBoard(MonopolySquare[] board){
+		this.board = board;
 	}
 
 	public ChanceCard drew() {
@@ -48,16 +53,20 @@ public class ChanceDeck {
                 ind++;
             }
             if(ind == deck.size() && deck.get(ind-1).getColor() != p.getColor()){
-                deck.add(new FreeTicketBooth(p.getColor(), 0, p.getColor()));
+            	FreeTicketBooth ftb = new FreeTicketBooth(p.getColor(), 0, p.getColor());
+            	ftb.setBoard(board);
+                deck.add(ftb);
             }
         }
 	    else {
-            deck.add(new FreeTicketBooth(p.getColor(), 0, p.getColor()));
+			FreeTicketBooth ftb = new FreeTicketBooth(p.getColor(), 0, p.getColor());
+			ftb.setBoard(board);
+			deck.add(ftb);
         }
 
-
-
-        deck.add(new GoToColor(p.toString(), p.getColor(), p.getNumber()));
+	    GoToColor gtc = new GoToColor(p.toString(), p.getColor(), p.getNumber());
+	    gtc.setBoard(board);
+        deck.add(gtc);
     }
 
     /*just shuffleDeck*/

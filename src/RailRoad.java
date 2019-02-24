@@ -19,6 +19,7 @@ public class RailRoad extends MonopolySquare {
    and will not do anything
 */
         public void setOwner(Player P){}
+        public void resetOwner(){}
         public String getOwner(){return "";}
     }
 

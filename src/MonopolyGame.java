@@ -3,12 +3,8 @@ import java.util.Random;
 import static java.lang.Math.*;
 
 public class MonopolyGame {
-    /*
-      these variables are class-level, and not instance level
-      these statics allows other classes to have access to these variables
-    */
 
-	private static MonopolySquare[] board;
+	private MonopolySquare[] board;
 	private static Random dice;
 	private LooseChange lc;
 	private ChanceDeck chanceCardDeck;
@@ -19,6 +15,7 @@ public class MonopolyGame {
 		dice = new Random();
 		lc = new LooseChange();
 		chanceCardDeck = new ChanceDeck();
+		chanceCardDeck.passBoard(board);
 
 		/*
 		    from here a bunch of initialization
@@ -139,8 +136,6 @@ public class MonopolyGame {
 		board[30] = bl1;
 		board[31] = bl2;
 
-
-
 	}
 	/*
 	    This function implements game
@@ -159,12 +154,10 @@ public class MonopolyGame {
 				catch (BankruptException e){
 					System.out.println(p1.getName() + " " + e.getMessage());
                     System.out.println("Winner is " + p2.getName());
-                    //resetChanceDeck();
-                    //resetLooseChange();
+					resetGame();
                     break label;
 					//System.exit(0);
 				}
-
 			}
 			p2.startTurn();
 			while (p2.isMyTurn()) {
@@ -174,8 +167,7 @@ public class MonopolyGame {
 				catch (BankruptException e){
 					System.out.println(p2.getName() + " " + e.getMessage());
                     System.out.println("Winner is " + p1.getName());
-                    //resetChanceDeck();
-                    //resetLooseChange();
+                    resetGame();
                     break label;
 					//System.exit(0);
 				}
@@ -183,21 +175,6 @@ public class MonopolyGame {
 			p1.startTurn();
 		}
 	}
-
-    /*
-        other classes will access class variables thorough these methods
-    */
-    public LooseChange getLc() {
-        return lc;
-    }
-
-    public ChanceDeck getChanceCardDeck() {
-        return chanceCardDeck;
-    }
-
-    public static MonopolySquare[] getBoard() {
-        return board;
-    }
 
     /*
         This function implement a player's turn
@@ -209,20 +186,17 @@ public class MonopolyGame {
         board[p.checkPlace()].landOn(p);
     }
 
-    private void resetChanceDeck(){
-		chanceCardDeck.shuffleDeck();
-		chanceCardDeck.resetIndex();
+    private void resetOwners(){
+    	for (int i = 0; i < board.length; i++){
+			board[i].resetOwner();
+		}
 	}
 
-	private void resetLooseChange(){
-    	lc.reset();
-    }
-
-    /*private void resetSquere(){
-
-    	for (int i = 0; i < board.length; i++){
-    		board[i].reset();
-		}
-	}*/
+	private void resetGame(){
+		lc.reset();
+		chanceCardDeck.resetIndex();
+		chanceCardDeck.shuffleDeck();
+		resetOwners();
+	}
 
 }

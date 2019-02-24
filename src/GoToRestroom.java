@@ -38,6 +38,7 @@ public class GoToRestroom extends MonopolySquare {
        Since these are abstract, we have to override, but they will not be called
        and will not do anything
    */
+    public void resetOwner(){}
     public void setOwner(Player P){}
     public String getOwner(){return "";}
 }
