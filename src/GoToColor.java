@@ -4,15 +4,15 @@
 
 public class GoToColor extends ChanceCard {
 
-    private MonopolySquare[] board;
-
-    public void setBoard(MonopolySquare[] board) {
-        this.board = board;
-    }
+    private Property prop;
 
     public GoToColor(String name, String color){
         super(name, color);
 
+    }
+
+    public void setProp(Property prop) {
+        this.prop = prop;
     }
 
     @Override
@@ -21,10 +21,8 @@ public class GoToColor extends ChanceCard {
     */
     public void chanceCardImplement(Player p, ChanceDeck cDeck) throws BankruptException {
         System.out.println(" " +p.getName() + " got Go To " + getName());
-        while (!(board[p.checkPlace()].toString().equals(getName()))){
-            p.move(1);
-        }
-        board[p.checkPlace()].landOn(p);
+        p.moveTo(prop.getIndex());
+        prop.landOn(p);
 
     }
 

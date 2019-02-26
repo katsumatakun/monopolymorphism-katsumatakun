@@ -89,6 +89,14 @@ public class Player {
 		}
 	}
 
+	public void moveTo(int index){
+		if (location > index){
+			System.out.println(" " + name + " passed Go and earned $2");
+			bankAccount += 2;
+		}
+		location = index;
+	}
+
 
 	public void goToRestroom(){
 		location = 5;

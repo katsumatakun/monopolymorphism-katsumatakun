@@ -17,7 +17,6 @@ public class MonopolyGame {
 		lc = new LooseChange();
 		propertyMap = new HashMap<>();
 		chanceCardDeck = new ChanceDeck();
-		chanceCardDeck.passBoard(board);
 
 		/*
 		    from here a bunch of initialization
@@ -101,8 +100,10 @@ public class MonopolyGame {
 		board[30] = bl1;
 		board[31] = bl2;
 
-		for (MonopolySquare square: board){
+		for (int i = 0; i < board.length; i++){
+			MonopolySquare square = board[i];
 			if (square instanceof Property){
+				((Property) square).setIndex(i);
 				chanceCardDeck.addCard((Property) square);
 				addPropertyMap( ((Property) square).getColor());
 			}

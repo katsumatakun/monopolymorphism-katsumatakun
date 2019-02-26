@@ -17,7 +17,6 @@ public class ChanceDeck {
 		It follows the rule for reusing.
 	*/
 	private ArrayList<ChanceCard> deck;
-	private MonopolySquare[] board;
 	private int next_index;
 
 	public ChanceDeck(){
@@ -25,11 +24,6 @@ public class ChanceDeck {
 		next_index = 0;
 
 	}
-
-	public void passBoard(MonopolySquare[] board){
-		this.board = board;
-	}
-
 
 	public ChanceCard drew() {
 		if (next_index == deck.size()) {
@@ -65,7 +59,7 @@ public class ChanceDeck {
 	}
 
 	    GoToColor gtc = new GoToColor(p.toString(), p.getColor());
-	    gtc.setBoard(board);
+	    gtc.setProp(p);
         deck.add(gtc);
     }
 

@@ -9,9 +9,9 @@ public class Property extends MonopolySquare {
         It has specialities that allow program to distinguish one from another
     */
     private String color;
-    //private int number;
     private int price;
     private Player owner;
+    private int index;
 
     public Property(String name){
         super(name);
@@ -25,6 +25,14 @@ public class Property extends MonopolySquare {
 
     public String getColor(){
         return color;
+    }
+
+    public int getIndex(){
+        return index;
+    }
+
+    public void setIndex(int index){
+        this.index = index;
     }
     /*
         It someone has owned the property, the owner will change
