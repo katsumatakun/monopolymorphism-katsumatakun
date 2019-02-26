@@ -13,10 +13,6 @@ public class ChanceSpot extends MonopolySquare {
     }
 
     @Override
-    public String toString() {
-        return name;
-    }
-
     public void landOn(Player P) throws BankruptException{
         System.out.println(" " + P.getName() + " moves to Chance");
         ChanceCard cc = cDeck.drew();

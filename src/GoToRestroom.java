@@ -13,13 +13,9 @@ public class GoToRestroom extends MonopolySquare {
         this.lc = lc;
     }
 
-        @Override
-        public String toString() {
-            return name;
-        }
+    @Override
 
-        public void landOn(Player P) throws BankruptException {
-
+    public void landOn(Player P) throws BankruptException {
         System.out.println(" " + P.getName() + " moves to Go to restroom");
         P.pay(3);
 

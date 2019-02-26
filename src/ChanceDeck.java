@@ -21,8 +21,7 @@ public class ChanceDeck {
 	private int next_index;
 
 	public ChanceDeck(){
-		// Needs code
-		deck = new ArrayList<ChanceCard>();
+		deck = new ArrayList<>();
 		next_index = 0;
 
 	}
@@ -30,6 +29,7 @@ public class ChanceDeck {
 	public void passBoard(MonopolySquare[] board){
 		this.board = board;
 	}
+
 
 	public ChanceCard drew() {
 		if (next_index == deck.size()) {
@@ -44,35 +44,37 @@ public class ChanceDeck {
 		If there is no free ticket of the color that the input property has,
 		Free Ticket Booth card for the color will be automatically added
 		to the deck.
+		Pass properties to Free Ticket Booth having the same color
 	*/
 
 	public void addCard(Property p){
-	    int ind = 0;
-	    if(deck.size() != 0) {
-            while (ind != deck.size() && deck.get(ind).getColor() != p.getColor()) {
-                ind++;
-            }
-            if(ind == deck.size() && deck.get(ind-1).getColor() != p.getColor()){
-            	FreeTicketBooth ftb = new FreeTicketBooth(p.getColor(), 0, p.getColor());
-            	ftb.setBoard(board);
-                deck.add(ftb);
-            }
-        }
-	    else {
-			FreeTicketBooth ftb = new FreeTicketBooth(p.getColor(), 0, p.getColor());
-			ftb.setBoard(board);
-			deck.add(ftb);
-        }
+	    boolean found = false;
 
-	    GoToColor gtc = new GoToColor(p.toString(), p.getColor(), p.getNumber());
+	    for (ChanceCard cc :deck) {
+	    	if (cc instanceof FreeTicketBooth && p.getColor().equals(cc.getColor())) {
+	    		((FreeTicketBooth) cc).addProperty(p);
+	    		found = true;
+	    		break;
+	    	}
+	    }
+
+	    if(!found){
+			FreeTicketBooth ftb = new FreeTicketBooth(p.getColor(), p.getColor());
+			ftb.addProperty(p);
+			deck.add(ftb);
+	}
+
+	    GoToColor gtc = new GoToColor(p.toString(), p.getColor());
 	    gtc.setBoard(board);
         deck.add(gtc);
     }
+
 
     /*just shuffleDeck*/
     public void shuffleDeck() {
         Collections.shuffle(deck);
     }
+
 
     public void resetIndex(){
     	next_index = 0;

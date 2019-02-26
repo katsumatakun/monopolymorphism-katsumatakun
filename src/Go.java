@@ -12,13 +12,6 @@ public class Go extends MonopolySquare {
     }
 
     @Override
-    public String toString() {
-        return name;
-    }
-
-    /*
-
-    */
     public void landOn(Player P) {
         System.out.println(" " + P.getName() + " moves to Go");
         P.endTurn();

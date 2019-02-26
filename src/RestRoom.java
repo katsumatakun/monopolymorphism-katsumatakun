@@ -8,6 +8,7 @@ public class RestRoom extends MonopolySquare {
         super(n);
     }
 
+    @Override
     public void landOn(Player P){
         System.out.println(" " + P.getName() + " moves to Restroom");
         P.endTurn();

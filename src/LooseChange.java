@@ -15,8 +15,6 @@ public class LooseChange {
 	// This is how my brother always cheated -- snitching money from the
 	// loose change.   I'm not bitter.
 
-
-
 	/*
 		return current balance and reset the balance
 	*/

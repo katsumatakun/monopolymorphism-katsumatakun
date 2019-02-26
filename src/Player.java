@@ -1,14 +1,20 @@
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Player {
 	private int bankAccount;
 	private String name;
 	private boolean isTurn;
 	private int location;
 	private int num_properties;
+	private ArrayList<Property> properties;
+	private Map<String, Integer> propertyMap;
 
 	public Player(String n){
 		name = n;
 		bankAccount = 31;
 		isTurn = false;
+		properties = new ArrayList<>();
 	}
 
 	/* you will add several methods to this class as needed.*/
@@ -21,11 +27,38 @@ public class Player {
 	(unless you are told to go "directly" to location, i.e. jail/restroom)
 	 */
 
-	public void looseProperty(){num_properties -=1;}
-
-	public void purchesProperty(){
-		num_properties += 1;
+	public void setPropertyMap(Map<String, Integer> propertyMap) {
+		this.propertyMap = propertyMap;
 	}
+
+	public void looseProperty(Property property){
+		num_properties -=1;
+		properties.remove(property);
+	}
+
+	public void purchesProperty(Property property){
+		num_properties += 1;
+		properties.add(property);
+		String color = property.getColor();
+		Integer num  = propertyMap.get(color);
+
+		for (Property p : properties){
+			if(p.getColor().equals(color)){
+				num--;
+			}
+		}
+		if(num == 0){
+			propertyMap.put(color, 0);
+			System.out.println("===================MONOPOLY==========================");
+		}
+
+
+	}
+
+	public boolean isMonopoly(String color) {
+		return (propertyMap.get(color) == 0);
+	}
+
 
 	public void pay(int amount){
 		bankAccount -= amount;
@@ -67,7 +100,7 @@ public class Player {
 
 	public void endTurn (){
 			isTurn  = false;
-			System.out.println(name+ " Ends turn with " +num_properties + " properties and $" + bankAccount );
+			System.out.println(name+ " Ends turn with " + num_properties + " properties " + properties + " and $" + bankAccount );
 	}
 
 	public void startTurn (){
@@ -76,43 +109,6 @@ public class Player {
 
 	public boolean isMyTurn(){
 		return isTurn;
-	}
-	/*
-	 	This method is associated with chance card.
-	 	It allows the player to jump the location, but
-	 	it will still check if the player passes Go
-	*/
-	public void jumpLocation(int num, String color){
-		int next_location = 0;
-		switch (color){
-			case "purple": next_location = 2;
-			break;
-			case "white": next_location = 6;
-			break;
-			case "magenta": next_location = 11;
-			break;
-			case "orange": next_location = 14;
-			break;
-			case "red": next_location = 18;
-			break;
-			case "yellow": next_location = 22;
-			break;
-			case "green": next_location = 27;
-			break;
-			case "blue": next_location = 30;
-			break;
-			default:break;
-		}
-
-		if (num == 2){
-			next_location++;
-		}
-		if (next_location < location){
-			System.out.println( " " + name + " passed Go");
-			System.out.println(" " + name + " earned $2");
-			earn(2);
-		}
-		location = next_location;
 	}
 
 }

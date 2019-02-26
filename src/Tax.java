@@ -21,8 +21,10 @@ public class Tax extends MonopolySquare {
     }
 
     public int getPrice(){
-        return price;}
-
+        return price;
+    }
+    
+    @Override
     public void landOn(Player P) throws BankruptException{
         System.out.println(" " + P.getName() + " moves to " + super.toString());
 

@@ -13,14 +13,16 @@ public class Loose extends MonopolySquare {
     }
 
     @Override
-    public String toString() {
-        return name;
-    }
-
     public void landOn(Player P) {
+
         System.out.println(" " + P.getName() + " moves to " + name);
-        System.out.println(" " + P.getName() + " earned $" + lc.checkBalance());
-        P.earn(lc.taken());
+        if(lc.checkBalance() > 0) {
+            System.out.println(" " + P.getName() + " earned $" + lc.checkBalance());
+            P.earn(lc.taken());
+        }
+        else{
+            System.out.println("No Money on LooseChange ");
+        }
         P.endTurn();
 
     }

@@ -10,8 +10,8 @@ public class GoToColor extends ChanceCard {
         this.board = board;
     }
 
-    public GoToColor(String name, String color, int num){
-        super(name, color, num);
+    public GoToColor(String name, String color){
+        super(name, color);
 
     }
 
@@ -21,9 +21,11 @@ public class GoToColor extends ChanceCard {
     */
     public void chanceCardImplement(Player p, ChanceDeck cDeck) throws BankruptException {
         System.out.println(" " +p.getName() + " got Go To " + getName());
-        p.jumpLocation(getNum(), getColor());
-
+        while (!(board[p.checkPlace()].toString().equals(getName()))){
+            p.move(1);
+        }
         board[p.checkPlace()].landOn(p);
+
     }
 
 }
