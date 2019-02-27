@@ -8,16 +8,11 @@ public class Tax extends MonopolySquare {
     private int price;
     private LooseChange lc;
 
-    public Tax(String n){
+    public Tax(String n, LooseChange lc,int price)
+    {
         super(n);
-    }
-
-    public void setPrice(int price){
-
-        this.price = price;
-    }
-    public void setLc(LooseChange lc){
         this.lc = lc;
+        this.price = price;
     }
 
     public int getPrice(){
@@ -36,13 +31,4 @@ public class Tax extends MonopolySquare {
         lc.add(2);
         P.endTurn();
     }
-
-    /*
-        Since these are abstract, we have to override, but they will not be called
-        and will not do anything
-    */
-    public void setOwner(Player P){}
-    public void resetOwner(){
-    }
-    public String getOwner(){return "";}
 }

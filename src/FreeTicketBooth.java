@@ -27,7 +27,7 @@ public class FreeTicketBooth extends ChanceCard {
 
         else {
             for(Property pro: pList){
-              if (!(pro.getOwner().equals(p.getName()))){
+              if (pro.getOwner() == null || !(pro.getOwner().equals(p))){
                     pro.setOwner(p);
                     break;
                 }

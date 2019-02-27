@@ -13,15 +13,12 @@ public class Property extends MonopolySquare {
     private Player owner;
     private int index;
 
-    public Property(String name){
+    public Property(String name, String color, int price){
         super(name);
-        owner = new Player("");
-    }
-
-
-    public void AddSpeciality(String color, int price){
+        owner = null;
         this.color = color;
-        this.price = price;}
+        this.price = price;
+    }
 
     public String getColor(){
         return color;
@@ -39,7 +36,7 @@ public class Property extends MonopolySquare {
     */
     public void setOwner(Player P){
         System.out.println("  "+P.getName() + " takes " + name);
-        if(!owner.getName().equals("")) {
+        if(!(owner == null)) {
             System.out.println("  " + owner.getName() + " lost " + name);
             owner.looseProperty(this);
         }
@@ -48,13 +45,13 @@ public class Property extends MonopolySquare {
 
     }
 
-    public String getOwner(){
-        return owner.getName();
+    public Player getOwner(){
+        return owner;
     }
 
     public void landOn(Player P) throws BankruptException{
         System.out.println(" " + P.getName() + " moves to " + name);
-        if (owner.getName().equals(""))
+        if (owner == null)
         {
 
             if (P.money() < price){

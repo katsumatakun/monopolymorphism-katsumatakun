@@ -3,13 +3,11 @@
 */
 
 public class GoToRestroom extends MonopolySquare {
-    public GoToRestroom(String name){
-        super(name);
-    }
 
     private LooseChange lc;
 
-    public void setLc(LooseChange lc){
+    public GoToRestroom(String name, LooseChange lc){
+        super(name);
         this.lc = lc;
     }
 
@@ -27,14 +25,5 @@ public class GoToRestroom extends MonopolySquare {
         lc.add(3);
         P.goToRestroom();
         P.endTurn();
-
-
     }
-    /*
-       Since these are abstract, we have to override, but they will not be called
-       and will not do anything
-   */
-    public void resetOwner(){}
-    public void setOwner(Player P){}
-    public String getOwner(){return "";}
 }

@@ -5,10 +5,9 @@
 public class Loose extends MonopolySquare {
 
     private LooseChange lc;
-    public Loose(String n){
+    public Loose(String n, LooseChange lc){
+
         super(n);
-    }
-    public void addLc(LooseChange lc){
         this.lc = lc;
     }
 
@@ -24,14 +23,5 @@ public class Loose extends MonopolySquare {
             System.out.println("No Money on LooseChange ");
         }
         P.endTurn();
-
     }
-
-    /*
-       Since these are abstract, we have to override, but they will not be called
-       and will not do anything
-   */
-    public void resetOwner(){}
-    public void setOwner(Player P){}
-    public String getOwner(){return "";}
 }

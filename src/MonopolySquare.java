@@ -27,7 +27,7 @@ public abstract class MonopolySquare {
 		theoretically, each space could have an owner so these abstract methods
 		make sense to me.
 	*/
-	public abstract void setOwner(Player P);
+	/*public abstract void setOwner(Player P);
 	public abstract void resetOwner();
-	public abstract String getOwner();
+	public abstract String getOwner();*/
 }
