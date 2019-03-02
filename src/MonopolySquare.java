@@ -22,12 +22,4 @@ public abstract class MonopolySquare {
 	// you have to figure out when it does as you implement this function
 
 
-	/*
-		These methods are for properties basically, but when you extend the game,
-		theoretically, each space could have an owner so these abstract methods
-		make sense to me.
-	*/
-	/*public abstract void setOwner(Player P);
-	public abstract void resetOwner();
-	public abstract String getOwner();*/
 }

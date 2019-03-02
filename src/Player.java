@@ -89,6 +89,10 @@ public class Player {
 		}
 	}
 
+	/*
+		Move to a specific index
+	*/
+
 	public void moveTo(int index){
 		if (location > index){
 			System.out.println(" " + name + " passed Go and earned $2");

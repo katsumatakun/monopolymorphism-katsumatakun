@@ -10,6 +10,10 @@ public class MonopolyGame {
 	private ChanceDeck chanceCardDeck;
 	private Map<String, Integer> propertyMap; //keep track on color and the number of properties of each color
 												//and each color property is monopoly or not
+	/*
+		This function create each object that is needed
+		in the game.
+	*/
 	public MonopolyGame(){
 
 		board = new MonopolySquare[32];
@@ -50,6 +54,14 @@ public class MonopolyGame {
 		board[30] = new Property("bl1", "blue", 5);
 		board[31] = new Property("bl1", "blue", 5);
 
+		/*
+			The purpose of this loop is making less manual
+			input.
+			It will automatically generate chance cards, index
+			information of each property, and the kinds and
+			the number of properties based on the bord.
+		*/
+
 		for (int i = 0; i < board.length; i++){
 			MonopolySquare square = board[i];
 			if (square instanceof Property){
@@ -67,6 +79,8 @@ public class MonopolyGame {
 		System.out.println("Play Game");
 		Player p1 = new Player("Player 1");
 		Player p2 = new Player("Player 2");
+
+		//Players will know which color is monopoly.
 		p1.setPropertyMap(propertyMap);
 		p2.setPropertyMap(propertyMap);
 
@@ -111,6 +125,11 @@ public class MonopolyGame {
         board[p.checkPlace()].landOn(p);
     }
 
+    /*
+   		This function will rest the game, which allows users to play
+   		the games multiple times in one instance.
+    */
+
 	private void resetGame() {
 		lc.reset();
 		chanceCardDeck.resetIndex();
@@ -123,6 +142,10 @@ public class MonopolyGame {
 			}
 		}
 	}
+
+	/*
+		Adding information about properties kinds and amounts
+	*/
 
 	private void addPropertyMap(String color){
 		Integer count = propertyMap.get(color);
