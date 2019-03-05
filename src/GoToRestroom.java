@@ -18,7 +18,7 @@ public class GoToRestroom extends MonopolySquare {
         P.pay(3);
 
         if (P.money() < 3){
-            throw new BankruptException("bankrupt");
+            throw new BankruptException(" bankrupt");
         }
         System.out.println(" " + P.getName() + " paid $3");
         System.out.println(P.getName() + " has $" + P.money());
